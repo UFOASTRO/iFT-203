@@ -13,3 +13,7 @@
 -- More sections like about us 
 And make it longer
 It feels too short 
+
+- add poster for glb models
+
+-- fix properties display grid

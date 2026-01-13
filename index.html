@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -24,7 +24,7 @@
 
     <header class="header">
         <div class="container nav-wrapper">
-            <a href="#" class="logo">SANDER HOUSE.</a>
+            <a href="#" class="logo">RIIN</a>
 
             <nav>
                 <ul class="nav-menu">
@@ -50,14 +50,14 @@
         <div class="hero-content">
             <div class="hero-text-block fade-up">
                 <span style="letter-spacing: 3px; margin-bottom: 20px; display: block;">EST. 2026</span>
-                <!-- <h1 class="hero-title">WHERE TRANQUILITY<br>MEETS MODERN LIVING</h1> -->
-                <!-- <a href="#properties" class="btn btn-white">
+                <h1 class="hero-title">WHERE TRANQUILITY<br>MEETS MODERN LIVING</h1>
+                <a href="#properties" class="btn btn-white">
                     View Layouts
                     <div class="arrow-icon"><i class="fas fa-arrow-right"></i></div>
-                </a> -->
+                </a>
             </div>
 
-            <!-- <div class="floating-card fade-up" style="margin-bottom: 20px;">
+            <div class="floating-card fade-up" style="margin-bottom: 20px;">
                 <div class="stat-header">
                     <div class="stat-number">400+</div>
                     <div class="arrow-icon" style="transform: rotate(-45deg);"><i class="fas fa-arrow-right"></i></div>
@@ -69,7 +69,7 @@
                     <img src="https://i.pravatar.cc/100?img=5" alt="client">
                     <img src="https://i.pravatar.cc/100?img=8" alt="client">
                 </div>
-            </div> -->
+            </div>
         </div>
     </section>
 
@@ -83,7 +83,8 @@
                     <h2 class="header-main reveal-text">We Shape Your Vision into Reality.</h2>
                 </div>
                 <div class="intro-text reveal-text">
-                    <p>At BuildingBlocks, <span class="capsule" id="capsule1"></span>we innovate ideas creating lasting structures that endure <span class="capsule" id="capsule2"></span> Our expertise
+                    <p>At BuildingBlocks, <span class="capsule" id="capsule1"></span>we innovate ideas creating lasting
+                        structures that endure <span class="capsule" id="capsule2"></span> Our expertise
                         ensures each project reflects our commitment to excellence. We turn dreams into reality,
                         creating uplifting spaces.</p>
                     <a href="#" class="btn btn-outline">
@@ -114,7 +115,7 @@
                             <h3 class="prop-title">The Sanctuary</h3>
                             <span class="prop-loc">Cantana Estate Lagos| CA</span>
                         </div>
-                        <span class="prop-price">₦204M</span>
+                        <span class="prop-price">₦800M</span>
                     </div>
                     <div class="prop-tags">
                         <span><i class="fas fa-bed"></i> 5 Beds</span>
@@ -132,7 +133,7 @@
                             <h3 class="prop-title">Azure Heights</h3>
                             <span class="prop-loc">Festac Lagos | FL</span>
                         </div>
-                        <span class="prop-price">₦208M</span>
+                        <span class="prop-price">₦689M</span>
                     </div>
                     <div class="prop-tags">
                         <span><i class="fas fa-bed"></i> 4 Beds</span>
@@ -150,7 +151,7 @@
                             <h3 class="prop-title">Escapade Pavilon House</h3>
                             <span class="prop-loc">Victoria Island, Lagos</span>
                         </div>
-                        <span class="prop-price"> ₦405M</span>
+                        <span class="prop-price"> ₦804M</span>
                     </div>
                     <div class="prop-tags">
                         <span><i class="fas fa-bed"></i> 6 Beds</span>
@@ -167,7 +168,7 @@
                             <h3 class="prop-title">Willowbrook Condo</h3>
                             <span class="prop-loc">Lekki, Lagos</span>
                         </div>
-                        <span class="prop-price"> ₦300M</span>
+                        <span class="prop-price"> ₦602M</span>
                     </div>
                     <div class="prop-tags">
                         <span><i class="fas fa-bed"></i> 6 Beds</span>
@@ -207,6 +208,23 @@
         </div>
     </section>
 
+    <section class="interactive-tour">
+    <center><p class="section-title">Interactive Models</p></center>
+    <div class="div interactive-tour interactive-grid">
+    <div class="grid-item" width="100%">
+        <model-viewer alt="" src="models/simple_modern_living_room.glb" ar shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </div>
+    <div class="grid-item">
+        <model-viewer alt="" src="models/modern_home.glb" ar  shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </div>
+    <div class="grid-item">
+        <model-viewer alt="" src="models/minimalistic_modern_bedroom.glb" ar shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </div>
+    <div class="grid-item">
+        <model-viewer alt="" src="models/modern_kitchen.glb" ar " shadow-intensity="1" camera-controls touch-action="pan-y"></model-viewer>
+    </div>
+</section>
+
     <section class="section-padding founder-section">
         <div class="container">
             <div class="founder-grid">
@@ -245,20 +263,20 @@
                 </div>
 
                 <div class="founder-image-wrapper">
-                    <img src="./Images/Founder.jpg" alt="Oluwanifemi Bello" class="founder-img founder-reveal">
+                    <img src="./Images/Founder.JPG" alt="Oluwanifemi Bello" class="founder-img founder-reveal">
                 </div>
 
             </div>
         </div>
     </section>
 
-   
+
     <div class="map">
-        <div class="iframe" >
+        <div class="iframe">
             <iframe src="https://odd-rules-146443.framer.app/" frameborder="0" width="100%" height="650px"></iframe>
         </div>
     </div>
-    
+
 
     <section class="intersection-wrapper">
         <div class="parallax-bg-container">

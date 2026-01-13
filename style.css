@@ -259,7 +259,7 @@ h4 {
   width: 100%;
   height: 100%;
   /* High quality architecture shot */
-  background-image: url("https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2700&auto=format&fit=crop");
+  background-image: url("Images/Intersection.jpg");
   background-size: cover;
   background-position: center;
   z-index: 1;
@@ -284,13 +284,13 @@ h4 {
   transform: translate(-50%, -50%);
   font-family: var(--font-display);
   font-size: 28vw;
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.855);
   z-index: 3;
   /* Behind content, in front of image */
   white-space: nowrap;
   pointer-events: none;
   line-height: 0.8;
-  opacity: 0.6;
+  opacity: 0.3;
   /* mix-blend-mode: soft-light; */
 }
 
@@ -383,13 +383,13 @@ h4 {
     position: relative;
 }
 #capsule1{
-    background-image: url(./Images/Lekki\ Building.jpeg);
+    background-image: url(./Images/Intersection.jpg);
 }
 #capsule2{
-    background-image: url(./Images/Kitchen\ Island.jpg);
+    background-image: url(./Images/pill1.jpeg);
 }
 #capsule3{
-    background-image: url(./Images/Victoria\ Island\ Building.jpeg);
+    background-image: url(./Images/pill2.jpeg);
 }
 
 /* --- ABOUT / INTRO SECTION --- */
@@ -696,6 +696,46 @@ h4 {
   }
 }
 
+.interactive-tour{
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.interactive-grid{
+    display: grid;
+    /* This creates 2 equal columns. Since you have 4 items, 
+       it naturally wraps into 2 rows. */
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Space between the models */
+    
+    /* Optional: Limit width and center the whole grid on page */
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #f5f5f5; /* Light gray background to frame the model */
+    border-radius: 4px;        /* Rounded corners */
+    overflow: hidden;          /* Keeps model inside rounded corners */
+}
+.grid-item model-viewer {
+    width: 100%;
+    height: 400px; /* Set a fixed height so the models are visible */
+    display: block;
+}
+
+/* --- Mobile Responsive Styles (1 Column) --- */
+@media (max-width: 768px) {
+    .property-grid {
+        /* Switch to 1 column so items stack */
+        grid-template-columns: 1fr; 
+    }
+
+    /* Optional: Make the models slightly shorter on mobile to save scroll space */
+    .grid-item model-viewer {
+        height: 300px; 
+    }
+}
 /* --- FOOTER --- */
 .footer {
   background: #fff;
@@ -766,7 +806,8 @@ h4 {
 
   /* Add hamburger later if needed */
   .hero-parallax-text {
-    font-size: 20vw;
+    /* display: none; */
+    font-size: 30vw;
     transform: translate(-50%, -20%);
   }
 

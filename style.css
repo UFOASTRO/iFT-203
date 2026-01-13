@@ -1,0 +1,799 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+  --primary: #111111;
+  --secondary: #6e6e6e;
+  --accent: #ffffff;
+  --bg-body: #ffffff;
+  --bg-light: #f4f4f4;
+  --font-display: "Oswald", sans-serif;
+  /* Tall, modern font for huge text */
+  --font-body: "Manrope", sans-serif;
+  /* Clean, geometric sans */
+  --ease: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--primary);
+  background-color: var(--bg-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- TYPOGRAPHY --- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.display-text {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+  display: block;
+  color: var(--secondary);
+}
+
+/* --- BUTTONS --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+.btn-white:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+.btn-dark {
+  background-color: var(--primary);
+  color: #fff;
+  border: 1px solid var(--primary);
+}
+
+.btn-dark:hover {
+  background-color: transparent;
+  color: var(--primary);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+.arrow-icon {
+  width: 30px;
+  height: 30px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.btn-white:hover .arrow-icon {
+  background: #fff;
+  color: #000;
+}
+
+.btn:hover .arrow-icon {
+  transform: rotate(-45deg);
+}
+
+/* --- LAYOUT UTILITIES --- */
+.container {
+  width: 90%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.section-padding {
+  padding: 120px 0;
+}
+
+/* --- HEADER --- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 0;
+  z-index: 100;
+  transition: all 0.4s var(--ease);
+  color: #fff;
+  /* Default state is white text */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header.scrolled {
+  background: #fff;
+  color: #111;
+  /* Scrolled state is dark text */
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 3rem;
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.header-contact {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-pill {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  font-size: 0.85rem;
+  transition: 0.3s;
+}
+
+.header.scrolled .contact-pill {
+  background: #f4f4f4;
+  color: #111;
+}
+
+/* --- HERO SECTION (Complex Layering) --- */
+.hero {
+  position: relative;
+  height: 110vh;
+  /* slightly taller for parallax feel */
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* High quality architecture shot */
+  background-image: url("https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2700&auto=format&fit=crop");
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  /* Slight tint for text readability */
+  z-index: 2;
+}
+
+/* The Massive Background Text */
+.hero-parallax-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 28vw;
+  color: rgb(255, 255, 255);
+  z-index: 3;
+  /* Behind content, in front of image */
+  white-space: nowrap;
+  pointer-events: none;
+  line-height: 0.8;
+  opacity: 0.6;
+  /* mix-blend-mode: soft-light; */
+}
+
+.hero-content {
+  position: relative;
+  z-index: 4;
+  color: #fff;
+  width: 90%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 70%;
+  padding-bottom: 50px;
+}
+
+.hero-text-block {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 5rem;
+  line-height: 1;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+/* Floating Stats Card */
+.floating-card {
+  background: #fff;
+  color: #111;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 320px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.stat-avatars {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.stat-avatars img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  margin-right: -10px;
+}
+
+
+.header-sub{
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  display: block;
+  position: absolute;
+  top: 45px;
+  color: var(--secondary);
+}
+.header-main{
+     font-size: 3.9rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+.capsule{
+    display: inline-block;
+    width:120px;
+    height: 50px;
+    border-radius: 200px;
+    border: 20px solid green blur(5px);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: 20px;
+    margin: 4px;
+    position: relative;
+}
+#capsule1{
+    background-image: url(./Images/Lekki\ Building.jpeg);
+}
+#capsule2{
+    background-image: url(./Images/Kitchen\ Island.jpg);
+}
+#capsule3{
+    background-image: url(./Images/Victoria\ Island\ Building.jpeg);
+}
+
+/* --- ABOUT / INTRO SECTION --- */
+.intro-section {
+  background: #fff;
+  position: relative;
+  z-index: 5;
+  /* Sit on top of hero */
+  border-radius: 30px 30px 0 0;
+  margin-top: -50px;
+  /* Overlap effect */
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* gap: 5rem; */
+  /* background-color: red; */
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.intro-text p {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  margin-bottom: 2rem;
+}
+
+/* --- PROPERTIES SECTION --- */
+.properties-section {
+  background: var(--bg-light);
+}
+
+.properties-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.property-card {
+  group-hover: cursor-pointer;
+}
+
+.prop-img-wrapper {
+  width: 100%;
+  height: 500px;
+  /* Tall styling */
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.prop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+
+.property-card:hover .prop-img {
+  transform: scale(1.05);
+}
+
+.prop-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.prop-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prop-loc {
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+
+.prop-price {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.prop-tags {
+  margin-top: 1rem;
+  display: flex;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+/* --- NEW SECTION: PROCESS --- */
+.process-section {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 3rem;
+}
+
+.process-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.process-item p {
+  color: #aaa;
+}
+
+.process-num {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* --- INTERSECTION PARALLAX SECTION --- */
+.intersection-wrapper {
+  margin-top: 40px;
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  /* Adjust height as needed */
+  overflow: hidden;
+  /* Crucial: cuts off the taller image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parallax-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.parallax-img {
+  width: 100%;
+  height: 120%;
+  /* The Secret: Image is 20% taller than container */
+  object-fit: cover;
+  position: absolute;
+  top: -10%;
+  /* Center the overflow slightly */
+  left: 0;
+}
+
+.intersection-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  /* Darkens image so text pops */
+  z-index: 2;
+}
+
+.intersection-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+}
+
+.intersection-text {
+  font-size: 3rem;
+  /* Make it big */
+  font-family: var(--font-display, sans-serif);
+  /* Use your display font */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.intersection-subtext {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  /* Slightly transparent white */
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .intersection-text {
+    font-size: 1.8rem;
+  }
+
+  .intersection-subtext {
+    font-size: 1rem;
+  }
+
+  .intersection-wrapper {
+    height: 60vh;
+  }
+}
+
+/* --- FOUNDER SECTION --- */
+.founder-section {
+  background-color: #fff;
+  overflow: hidden;
+  /* Keeps animations clean */
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1fr;
+  /* Text takes 45%, Image 55% */
+  gap: 6rem;
+  align-items: center;
+}
+
+.founder-content {
+  padding-right: 1rem;
+}
+
+.bio-text p {
+  color: var(--secondary);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.signature-block {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  display:  flex;
+  /* background-color: red; */
+  justify-content: space-between;
+  position: relative;
+}
+
+.signature {
+  margin-right: 20px;
+  font-family: "Pinyon Script", cursive;
+  opacity: 0.6;
+  rotate: -30deg;
+}
+#signature-text{
+    display: flex;
+}
+/* --- FOUNDER IMAGE UPDATE --- */
+.founder-image-wrapper {
+  position: relative;
+  height: 700px;
+  width: 100%;
+  overflow: hidden;
+  /* Essential for the masking effect */
+  border-radius: 6px;
+}
+
+.founder-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* We remove the initial clip-path here because GSAP will handle it */
+  transform-origin: center center;
+  will-change: transform, clip-path;
+}
+
+.founder-image-wrapper:hover .founder-img {
+  filter: grayscale(0%);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .founder-grid {
+    grid-template-columns: 1fr;
+    /* Stack vertically */
+    gap: 4rem;
+  }
+
+  .founder-image-wrapper {
+    order: -1;
+    /* Puts image on top on tablet/mobile */
+    height: 500px;
+  }
+
+  .founder-content {
+    padding-right: 0;
+  }
+}
+
+/* --- FOOTER --- */
+.footer {
+  background: #fff;
+  padding-top: 5rem;
+  border-top: 1px solid #eee;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4rem;
+}
+
+.footer-logo {
+  font-size: 5rem;
+  font-family: var(--font-display);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-nav ul li {
+  margin-bottom: 1rem;
+  color: var(--secondary);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.footer-nav ul li:hover {
+  color: var(--primary);
+}
+
+.copyright {
+  border-top: 1px solid #eee;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--secondary);
+  font-size: 0.9rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  /* Add hamburger later if needed */
+  .hero-parallax-text {
+    font-size: 20vw;
+    transform: translate(-50%, -20%);
+  }
+
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact-form label {
+    margin-top: 10px;
+}

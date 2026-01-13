@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANDER HOUSE | Modern Living</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        /* --- 1. CORE VARIABLES & RESET --- */
+        :root {
+            --primary: #111111;       /* Deep Black/Charcoal */
+            --secondary: #6e6e73;     /* Apple-style gray */
+            --accent: #d4af37;        /* Subtle Gold */
+            --bg-body: #ffffff;
+            --bg-light: #f5f5f7;      /* Light Gray */
+            --white: #ffffff;
+            
+            --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --container: 90%;
+            --max-width: 1440px;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1); /* Apple-style ease */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { overflow-x: hidden; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--primary);
+            background: var(--bg-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { width: 100%; height: auto; display: block; }
+
+        /* --- 2. TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-weight: 300; 
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        h1 { font-size: clamp(3rem, 6vw, 6rem); }
+        h2 { font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 1.5rem; }
+        h3 { font-size: 1.5rem; font-weight: 400; }
+        
+        .sub-text {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* --- 3. UTILITIES & BUTTONS --- */
+        .container {
+            width: var(--container);
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid var(--primary);
+            cursor: pointer;
+            transition: all 0.4s var(--ease);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        /* Outline button that inherits color (for white/dark contexts) */
+        .btn-outline {
+            background: transparent;
+            border: 1px solid currentColor;
+            color: currentColor;
+        }
+        .btn-outline:hover {
+            background: currentColor;
+            color: var(--bg-body) !important; 
+        }
+
+        /* --- 4. HEADER & NAV --- */
+        .header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            padding: 2rem 0;
+            transition: all 0.4s ease;
+            
+            /* Initial State: Transparent BG, White Text */
+            background: transparent;
+            color: var(--white); 
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            color: var(--primary); /* Scrolled State: Dark Text */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            z-index: 1002; /* Above mobile menu */
+        }
+
+        .nav-menu { display: flex; gap: 3rem; }
+        
+        .nav-link {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -5px; left: 0;
+            width: 0; height: 1px; background: currentColor;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .header-actions { display: flex; gap: 2rem; align-items: center; }
+
+        /* Hamburger */
+        .hamburger { display: none; cursor: pointer; z-index: 1002; }
+        .bar {
+            width: 30px; height: 1px; 
+            background-color: currentColor; 
+            margin: 8px 0; transition: 0.3s;
+        }
+
+        /* --- 5. HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--white);
+        }
+
+        .hero-bg-wrapper {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 120%; /* Taller for parallax */
+            z-index: 0;
+        }
+
+        .hero-bg-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        /* The Big Background Text (Fixed per request) */
+        .hero-bg-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 25vw;
+            font-weight: 700;
+            color: rgba(255,255,255,0.08);
+            white-space: nowrap;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Stats Box */
+        .floating-stats {
+            position: absolute;
+            bottom: 50px; right: 50px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 2rem;
+            width: 280px;
+            z-index: 3;
+            color: white;
+        }
+        
+        .stats-number { font-size: 3rem; font-weight: 300; line-height: 1; }
+
+        /* --- 6. SEARCH FILTER (New Section) --- */
+        .search-section {
+            position: relative;
+            margin-top: -50px; /* Overlap Hero */
+            z-index: 10;
+            padding-bottom: 5rem;
+        }
+        
+        .search-box {
+            background: var(--white);
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .input-group label {
+            display: block; font-size: 0.75rem; 
+            text-transform: uppercase; color: var(--secondary);
+            margin-bottom: 0.5rem; letter-spacing: 1px;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%; border: none; 
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0; font-family: inherit;
+            font-size: 1.1rem; outline: none; background: transparent;
+        }
+
+        /* --- 7. PROPERTIES --- */
+        .section { padding: 120px 0; }
+        .bg-light { background-color: var(--bg-light); }
+
+        .section-header {
+            display: flex; justify-content: space-between; 
+            align-items: flex-end; margin-bottom: 4rem;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .property-card { cursor: pointer; group: 1; }
+
+        .card-img-container {
+            height: 500px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .card-img-container img {
+            height: 100%;
+            transition: transform 1.2s var(--ease);
+        }
+        
+        .property-card:hover .card-img-container img { transform: scale(1.05); }
+
+        .card-info h3 { margin-bottom: 0.5rem; }
+        .card-price { 
+            font-size: 1.2rem; color: var(--secondary); margin-bottom: 1rem; 
+        }
+        .card-specs {
+            display: flex; gap: 1.5rem; font-size: 0.9rem; 
+            color: var(--secondary); border-top: 1px solid #eee; padding-top: 1rem;
+        }
+
+        /* --- 8. VIDEO LIFESTYLE SECTION (New) --- */
+        .video-section {
+            height: 80vh;
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        .video-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.2);
+        }
+
+        .play-button {
+            width: 100px; height: 100px;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.5rem;
+            cursor: pointer; z-index: 2;
+            transition: transform 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .play-button:hover { transform: scale(1.1); background: white; color: black; }
+
+        /* --- 9. AGENTS --- */
+        .agents-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+        }
+        .agent-card img {
+            height: 450px; object-fit: cover;
+            filter: grayscale(100%); transition: 0.5s ease;
+        }
+        .agent-card:hover img { filter: grayscale(0%); }
+        .agent-details { padding-top: 1.5rem; }
+
+        /* --- 10. FAQ --- */
+        .faq-item {
+            border-bottom: 1px solid #ddd; padding: 2rem 0; cursor: pointer;
+        }
+        .faq-question {
+            display: flex; justify-content: space-between; font-size: 1.3rem;
+        }
+        .faq-answer {
+            height: 0; overflow: hidden; color: var(--secondary);
+            transition: height 0.4s var(--ease);
+        }
+        .faq-toggle { transition: transform 0.3s; }
+
+        /* --- 11. FOOTER --- */
+        .footer {
+            background: var(--primary); color: white; padding: 6rem 0;
+        }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 4rem;
+        }
+        .footer-link { color: #888; display: block; margin-bottom: 0.8rem; }
+        .footer-link:hover { color: white; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-bg-text { font-size: 30vw; }
+            .agents-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed; top: 0; right: -100%;
+                width: 100%; height: 100vh;
+                background: white; color: black;
+                flex-direction: column; justify-content: center;
+                transition: 0.4s ease;
+            }
+            .nav-menu.active { right: 0; }
+            .hamburger { display: block; }
+            
+            /* Logic: When menu is open, hamburger must be black */
+            .hamburger.active .bar { background-color: black !important; }
+
+            .hero-title { font-size: 2.8rem; }
+            .search-box { grid-template-columns: 1fr; }
+            .property-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .floating-stats { position: relative; width: 100%; bottom: auto; right: auto; margin-top: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">SANDER HOUSE.</a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#hero" class="nav-link">Residence</a></li>
+                    <li><a href="#properties" class="nav-link">Listings</a></li>
+                    <li><a href="#agents" class="nav-link">Brokers</a></li>
+                    <li><a href="#about" class="nav-link">Journal</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <a href="#contact" class="btn btn-outline" style="padding: 12px 24px;">Contact</a>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg-wrapper">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Modern Architecture" class="hero-bg-img">
+        </div>
+        
+        <div class="hero-bg-text">LUXURY</div>
+
+        <div class="container">
+            <div class="hero-content">
+                <span class="sub-text" style="color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 1rem;">Est. 2024</span>
+                <h1 class="hero-title reveal-text">WHERE TRANQUILITY<br>MEETS MODERNITY</h1>
+                <div style="margin-top: 3rem;" class="reveal-btn">
+                    <a href="#properties" class="btn" style="background: white; color: black; border-color: white;">View Layouts</a>
+                </div>
+            </div>
+
+            <div class="floating-stats reveal-side">
+                <div class="stats-number"><span id="counter">0</span>+</div>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">Satisfied clients across 15 countries worldwide.</p>
+                <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <div style="display: flex;">
+                        <img src="https://i.pravatar.cc/100?img=1" style="width:30px; height:30px; border-radius:50%; border: 1px solid white; margin-left: -10px;">
+                        <img src="https://i.pravatar.cc/100?img=5" style="width:30px; height:30px; border-radius:50%; border: 1px solid white; margin-left: -10px;">
+                    </div>
+                    <span style="font-size: 0.8rem; font-weight: 600;">Trust Pilot 4.9/5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="search-section reveal-up">
+            <div class="search-box">
+                <div class="input-group">
+                    <label>Location</label>
+                    <input type="text" placeholder="Beverly Hills, CA">
+                </div>
+                <div class="input-group">
+                    <label>Type</label>
+                    <select style="background: transparent;">
+                        <option>Modern Villa</option>
+                        <option>Penthouse</option>
+                        <option>Estate</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Budget</label>
+                    <input type="text" placeholder="$2M - $15M">
+                </div>
+                <button class="btn">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="about" class="section">
+        <div class="container">
+             <div style="max-width: 900px;" class="reveal-text-block">
+                <p class="sub-text">WHO WE ARE</p>
+                <h2>We curate homes that inspire. From cozy city apartments to spacious family estates, we shape your vision into reality.</h2>
+             </div>
+        </div>
+    </section>
+
+    <section id="properties" class="section bg-light">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <div>
+                    <h2 style="margin-bottom: 0.5rem;">Selected Works</h2>
+                    <p class="sub-text" style="margin-bottom: 0;">Handpicked for the discerning buyer.</p>
+                </div>
+                <a href="#" class="btn-outline btn">View All</a>
+            </div>
+
+            <div class="property-grid">
+                <article class="property-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80" alt="Villa">
+                    </div>
+                    <div class="card-info">
+                        <h3>Hidden Valley Sanctuary</h3>
+                        <div class="card-price">$2,450,000</div>
+                        <div class="card-specs">
+                            <span>5 Beds</span>
+                            <span>4 Baths</span>
+                            <span>4,500 sqft</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="property-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Mansion">
+                    </div>
+                    <div class="card-info">
+                        <h3>Azure Heights Modern</h3>
+                        <div class="card-price">$1,890,000</div>
+                        <div class="card-specs">
+                            <span>4 Beds</span>
+                            <span>3 Baths</span>
+                            <span>3,200 sqft</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="property-card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1453&q=80" alt="Estate">
+                    </div>
+                    <div class="card-info">
+                        <h3>Willowbrook Estate</h3>
+                        <div class="card-price">$3,100,000</div>
+                        <div class="card-specs">
+                            <span>6 Beds</span>
+                            <span>5 Baths</span>
+                            <span>5,100 sqft</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="video-section">
+        <div class="video-overlay"></div>
+        <div class="play-button reveal-zoom">
+            <i class="fas fa-play"></i>
+        </div>
+        <div style="position: absolute; bottom: 10%; text-align: center; color: white; z-index: 2;" class="reveal-up">
+            <h2>The Experience</h2>
+            <p>Take a virtual tour of our exclusive listings.</p>
+        </div>
+    </section>
+
+    <section id="agents" class="section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                 <h2>Our Brokers</h2>
+            </div>
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent">
+                    <div class="agent-details">
+                        <h4>Mark Anderson</h4>
+                        <p style="color: #888; font-size: 0.9rem;">Senior Broker</p>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent">
+                    <div class="agent-details">
+                        <h4>Sarah Jenkins</h4>
+                        <p style="color: #888; font-size: 0.9rem;">Luxury Specialist</p>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent">
+                    <div class="agent-details">
+                        <h4>David Chen</h4>
+                        <p style="color: #888; font-size: 0.9rem;">Commercial</p>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent">
+                    <div class="agent-details">
+                        <h4>Maria Rodriguez</h4>
+                        <p style="color: #888; font-size: 0.9rem;">Residential</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: 3rem;" class="reveal-up">Common Questions</h2>
+                
+                <div class="faq-item reveal-up">
+                    <div class="faq-question">
+                        How do I schedule a viewing?
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="padding-top: 1.5rem;">Simply contact one of our agents or use the form on the property page. We arrange private viewings at your convenience.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal-up">
+                    <div class="faq-question">
+                        Do you handle international transactions?
+                        <i class="fas fa-plus faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p style="padding-top: 1.5rem;">Yes, over 40% of our clients are international. We handle all legal frameworks and remote viewings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="color: white; margin-bottom: 1.5rem; display: block;">SANDER HOUSE.</a>
+                    <p style="color: #888;">Where tranquility meets modern living.</p>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Company</h4>
+                    <ul>
+                        <li><a href="#" class="footer-link">About Us</a></li>
+                        <li><a href="#" class="footer-link">Properties</a></li>
+                        <li><a href="#" class="footer-link">Agents</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Legal</h4>
+                    <ul>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1.5rem;">Newsletter</h4>
+                    <div style="display: flex; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        <input type="email" placeholder="Email Address" style="background: transparent; border: none; padding: 10px 0; color: white; width: 100%; outline: none;">
+                        <button style="background: transparent; border: none; color: white; cursor: pointer;">GO</button>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 5rem; color: #555; font-size: 0.8rem;">
+                &copy; 2024 Sander House Real Estate.
+            </div>
+        </div>
+    </footer>
+    <iframe src="https://odd-rules-146443.framer.app/" width="100%" height="1000px">
+
+    </iframe>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- 1. Nav Color Logic (White -> Dark) ---
+        const header = document.querySelector('.header');
+        
+        // This simple check works with the CSS .scrolled class logic
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // --- 2. Mobile Menu ---
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // --- 3. GSAP ANIMATIONS ---
+
+        // A. Hero Parallax (Image moves slower than scroll)
+        gsap.to(".hero-bg-img", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // B. The "Background Text" Parallax (Preserved & Enhanced)
+        gsap.to(".hero-bg-text", {
+            y: 150,
+            opacity: 0,
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom center",
+                scrub: true
+            }
+        });
+
+        // C. Hero Content Staggered Entry (On Load)
+        const heroTl = gsap.timeline();
+        heroTl.from(".reveal-text", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out", stagger: 0.2 })
+              .from(".reveal-btn", { y: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=1")
+              .from(".reveal-side", { x: 50, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.8");
+
+        // D. Counter Animation (0 -> 400)
+        // Only triggers when the stats box comes into view
+        gsap.to("#counter", {
+            innerText: 400,
+            duration: 2,
+            snap: { innerText: 1 },
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: ".floating-stats",
+                start: "top 90%",
+                once: true
+            }
+        });
+
+        // E. General "Fade Up" for Sections
+        gsap.utils.toArray('.reveal-up').forEach(elem => {
+            gsap.from(elem, {
+                y: 60,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%"
+                }
+            });
+        });
+
+        // F. Property Cards - Staggered Slide In
+        gsap.from(".property-card", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".property-grid",
+                start: "top 80%"
+            }
+        });
+
+        // G. Agent Cards - Sequential Fade
+        gsap.from(".agent-card", {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".agents-grid",
+                start: "top 80%"
+            }
+        });
+
+        // --- 4. FAQ Accordion Logic (GSAP) ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-toggle');
+                
+                // Toggle active class
+                const isActive = item.classList.toggle('active');
+                
+                // Animate Height
+                if (isActive) {
+                    gsap.to(answer, { height: "auto", duration: 0.4, ease: "power2.out" });
+                    gsap.to(icon, { rotation: 45, duration: 0.4 });
+                } else {
+                    gsap.to(answer, { height: 0, duration: 0.4, ease: "power2.out" });
+                    gsap.to(icon, { rotation: 0, duration: 0.4 });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

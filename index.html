@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANDER HOUSE | Modern Real Estate</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Oswald:wght@300;400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">SANDER HOUSE.</a>
+
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#properties" class="nav-link">Properties</a></li>
+                    <li><a href="#process" class="nav-link">Process</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-contact">
+                <a href="#" class="contact-pill">+234 704 874 2443</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-bg-img"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-parallax-text" id="bigText">SANDER</div>
+
+        <div class="hero-content">
+            <div class="hero-text-block fade-up">
+                <span style="letter-spacing: 3px; margin-bottom: 20px; display: block;">EST. 2026</span>
+                <!-- <h1 class="hero-title">WHERE TRANQUILITY<br>MEETS MODERN LIVING</h1> -->
+                <!-- <a href="#properties" class="btn btn-white">
+                    View Layouts
+                    <div class="arrow-icon"><i class="fas fa-arrow-right"></i></div>
+                </a> -->
+            </div>
+
+            <!-- <div class="floating-card fade-up" style="margin-bottom: 20px;">
+                <div class="stat-header">
+                    <div class="stat-number">400+</div>
+                    <div class="arrow-icon" style="transform: rotate(-45deg);"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <p style="font-size: 0.9rem; color: #666; line-height: 1.4;">Happy clients have already found their
+                    dream homes worldwide.</p>
+                <div class="stat-avatars">
+                    <img src="https://i.pravatar.cc/100?img=1" alt="client">
+                    <img src="https://i.pravatar.cc/100?img=5" alt="client">
+                    <img src="https://i.pravatar.cc/100?img=8" alt="client">
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+
+
+    <section id="about" class="section-padding intro-section">
+        <div class="container">
+            <div class="intro-grid">
+                <div>
+                    <span class="header-sub">Who We Are</span>
+                    <h2 class="header-main reveal-text">We Shape Your Vision into Reality.</h2>
+                </div>
+                <div class="intro-text reveal-text">
+                    <p>At BuildingBlocks, <span class="capsule" id="capsule1"></span>we innovate ideas creating lasting structures that endure <span class="capsule" id="capsule2"></span> Our expertise
+                        ensures each project reflects our commitment to excellence. We turn dreams into reality,
+                        creating uplifting spaces.</p>
+                    <a href="#" class="btn btn-outline">
+                        Learn More <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="section-padding properties-section">
+        <div class="container">
+            <div class="properties-header">
+                <div>
+                    <span class="subtitle">Our Portfolio</span>
+                    <h2 class="section-title reveal-text">Discover Your<br>Ideal Property</h2>
+                </div>
+                <a href="#" class="btn btn-outline">See All Properties</a>
+            </div>
+
+            <div class="property-grid">
+                <article class="property-card fade-item">
+                    <div class="prop-img-wrapper">
+                        <img src="./Images/Cantana Apartment.jpg" alt="House" class="prop-img">
+                    </div>
+                    <div class="prop-info">
+                        <div>
+                            <h3 class="prop-title">The Sanctuary</h3>
+                            <span class="prop-loc">Cantana Estate Lagos| CA</span>
+                        </div>
+                        <span class="prop-price">₦204M</span>
+                    </div>
+                    <div class="prop-tags">
+                        <span><i class="fas fa-bed"></i> 5 Beds</span>
+                        <span><i class="fas fa-bath"></i> 4 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 4,500 sqft</span>
+                    </div>
+                </article>
+
+                <article class="property-card fade-item">
+                    <div class="prop-img-wrapper">
+                        <img src="./Images/Festac Building.jpeg" alt="House" class="prop-img">
+                    </div>
+                    <div class="prop-info">
+                        <div>
+                            <h3 class="prop-title">Azure Heights</h3>
+                            <span class="prop-loc">Festac Lagos | FL</span>
+                        </div>
+                        <span class="prop-price">₦208M</span>
+                    </div>
+                    <div class="prop-tags">
+                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 3,200 sqft</span>
+                    </div>
+                </article>
+
+                <article class="property-card fade-item">
+                    <div class="prop-img-wrapper">
+                        <img src="./Images/Victoria Island Building.jpeg" alt="House" class="prop-img">
+                    </div>
+                    <div class="prop-info">
+                        <div>
+                            <h3 class="prop-title">Escapade Pavilon House</h3>
+                            <span class="prop-loc">Victoria Island, Lagos</span>
+                        </div>
+                        <span class="prop-price"> ₦405M</span>
+                    </div>
+                    <div class="prop-tags">
+                        <span><i class="fas fa-bed"></i> 6 Beds</span>
+                        <span><i class="fas fa-bath"></i> 5 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 5,100 sqft</span>
+                    </div>
+                </article>
+                <article class="property-card fade-item">
+                    <div class="prop-img-wrapper">
+                        <img src="./Images/Lekki Building.jpeg" alt="House" class="prop-img">
+                    </div>
+                    <div class="prop-info">
+                        <div>
+                            <h3 class="prop-title">Willowbrook Condo</h3>
+                            <span class="prop-loc">Lekki, Lagos</span>
+                        </div>
+                        <span class="prop-price"> ₦300M</span>
+                    </div>
+                    <div class="prop-tags">
+                        <span><i class="fas fa-bed"></i> 6 Beds</span>
+                        <span><i class="fas fa-bath"></i> 5 Baths</span>
+                        <span><i class="fas fa-ruler-combined"></i> 5,100 sqft</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section-padding process-section">
+        <div class="container">
+            <span class="subtitle" style="color: #aaa;">How We Work</span>
+            <h2 class="section-title reveal-text">Seamless Experience</h2>
+
+            <div class="process-grid">
+                <div class="process-item fade-up">
+                    <div class="process-num">01</div>
+                    <h3>Consultation</h3>
+                    <p>We begin with a deep dive into your needs, preferences, and lifestyle to curate a list of
+                        properties that match your vision.</p>
+                </div>
+                <div class="process-item fade-up">
+                    <div class="process-num">02</div>
+                    <h3>Curated Tours</h3>
+                    <p>Experience the properties firsthand with our guided private tours, ensuring every detail aligns
+                        with your expectations.</p>
+                </div>
+                <div class="process-item fade-up">
+                    <div class="process-num">03</div>
+                    <h3>Smooth Closing</h3>
+                    <p>From negotiation to paperwork, our legal and financial experts handle the complexities, handing
+                        you the keys stress-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding founder-section">
+        <div class="container">
+            <div class="founder-grid">
+
+                <div class="founder-content">
+                    <span class="subtitle">The Visionary</span>
+                    <h2 class="section-title">Crafting Legacies,<br>One Home at a Time.</h2>
+
+                    <div class="bio-text">
+                        <p>
+                            "Real estate isn't just about structures; it's about the stories that unfold within them. At
+                            Sander House, we don't just sell properties—we curate the backdrop for your life's most
+                            defining moments."
+                        </p>
+                        <p style="margin-top: 1.5rem; font-size: 0.95rem;">
+                            With over 15 years in luxury development, Mark Sander has redefined the skyline. His
+                            philosophy creates a seamless dialogue between nature, architecture, and the people who
+                            inhabit them.
+                        </p>
+                    </div>
+
+                    <div class="signature-block">
+                        <div>
+                            <h4 style="font-size: 1.1rem; font-weight: 600;">Bello Oluwanifemi</h4>
+                            <span style="color: var(--secondary); font-size: 0.85rem;">Founder & CEO</span>
+                        </div>
+                        <p class="signature">bello <span id="signature-text">Oluwanifemi</span></p>
+                    </div>
+
+                    <a href="https://oluwanifemi-ten.vercel.app" target="_blank" class="btn btn-dark"
+                        style="margin-top: 2rem;">
+                        Read Full Story
+                        <div class="arrow-icon" style="background: #fff; color: #000;"><i
+                                class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+
+                <div class="founder-image-wrapper">
+                    <img src="./Images/Founder.jpg" alt="Oluwanifemi Bello" class="founder-img founder-reveal">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+   
+    <div class="map">
+        <div class="iframe" >
+            <iframe src="https://odd-rules-146443.framer.app/" frameborder="0" width="100%" height="650px"></iframe>
+        </div>
+    </div>
+    
+
+    <section class="intersection-wrapper">
+        <div class="parallax-bg-container">
+            <img src="Images/Intersection.jpg" alt="Luxury Interior" class="parallax-img">
+        </div>
+
+        <div class="intersection-overlay"></div>
+
+        <div class="intersection-content">
+            <p class="intersection-text">Luxury Houses at <br> <span style="color: #fff; font-weight: 600;">Affordable
+                    Prices</span></p>
+            <p class="intersection-sub text">
+                Experience the perfect blend of architectural elegance and modern comfort.
+                We curate spaces that inspire tranquility without compromising on accessibility.
+            </p>
+
+            <a href="#contact" class="btn btn-white">
+                Get in Touch
+                <div class="arrow-icon"><i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h2 class="footer-logo">SANDER<br>HOUSE.</h2>
+                    <p style="color: #666; max-width: 300px;">Redefining modern living with curated luxury real estate
+                        across the globe.</p>
+                </div>
+
+                <div class="footer-nav">
+                    <ul>
+                        <li><strong style="color: #000;">Company</strong></li>
+                        <li>About Us</li>
+                        <li>Careers</li>
+                        <li>Press</li>
+                    </ul>
+                    <ul>
+                        <li><strong style="color: #000;">Support</strong></li>
+                        <li>Contact</li>
+                        <li>FAQ</li>
+                        <li>Terms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2026 Sander House. All Rights Reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#">Instagram</a>
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="script.js"></script>
+
+</html>

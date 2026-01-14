@@ -1,4 +1,4 @@
-        // Register ScrollTrigger
+// Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
 
         // 1. Navbar Color Change on Scroll
@@ -68,6 +68,36 @@
         });
         // Set initial state for batch items (since CSS is tricky with batch sometimes)
         gsap.set(".fade-item", { y: 60, opacity: 0 });
+
+        // Handle "See All Properties" Click
+        const seeAllBtn = document.getElementById('see-all-btn');
+        if (seeAllBtn) {
+            seeAllBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const hiddenProps = document.querySelectorAll('.hidden-property');
+                
+                hiddenProps.forEach(prop => {
+                    prop.classList.remove('hidden-property');
+                    // We need to reset their GSAP state so they can be animated in
+                    gsap.set(prop, { y: 60, opacity: 0 });
+                });
+
+                // Trigger animation for the newly revealed items
+                gsap.to(hiddenProps, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.15,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+
+                // Refresh ScrollTrigger to account for new page height
+                ScrollTrigger.refresh();
+
+                // Hide the button after showing all
+                this.style.display = 'none';
+            });
+        }
 
         // 6. Generic Fade Up for miscellaneous elements
         const fadeUps = gsap.utils.toArray('.fade-up');

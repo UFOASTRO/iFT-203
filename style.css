@@ -380,6 +380,8 @@ h4 {
     background-repeat: no-repeat;
     top: 20px;
     margin: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
     position: relative;
 }
 #capsule1{
@@ -398,8 +400,8 @@ h4 {
   position: relative;
   z-index: 5;
   /* Sit on top of hero */
-  border-radius: 30px 30px 0 0;
-  margin-top: -50px;
+  border-radius: 40px 40px 0 0;
+  margin-top: -40px;
   /* Overlap effect */
 }
 
@@ -409,12 +411,12 @@ h4 {
   /* gap: 5rem; */
   /* background-color: red; */
   align-items: center;
-  padding: 20px;
+  padding:20px;
   position: relative;
 }
 
 .intro-text p {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: var(--secondary);
   margin-bottom: 2rem;
 }
@@ -433,7 +435,7 @@ h4 {
 
 .property-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
@@ -488,6 +490,10 @@ h4 {
   gap: 15px;
   font-size: 0.85rem;
   color: var(--secondary);
+}
+
+.hidden-property {
+  display: none;
 }
 
 /* --- NEW SECTION: PROCESS --- */
@@ -837,4 +843,11 @@ h4 {
 
 .contact-form label {
     margin-top: 10px;
+}
+
+.iframe{
+
+  border-radius: 60px;
+  padding: 20px;
+
 }

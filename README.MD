@@ -20,3 +20,7 @@ It feels too short
 -- add video intersection /background 
 
 -- fix properties display grid
+
+-- Add FAQ section 
+
+-- change hero section box to black people

@@ -292,7 +292,7 @@ h4 {
   white-space: nowrap;
   pointer-events: none;
   line-height: 0.8;
-  opacity: 0.3;
+  opacity: 0.03;
   /* mix-blend-mode: soft-light; */
 }
 
@@ -416,11 +416,32 @@ h4 {
   padding:20px;
   position: relative;
 }
+.intro-grid2{
+  display: flexbox;
+  grid-template-columns: 1fr 1fr;
+  /* gap: 5rem; */
+  /* background-color: red; */
+  align-items: center;
+  padding:20px;
+  position: relative;
+}
+.about-grid{
+display: flex;
+gap: 40px;
+/* justify-content: center;
+align-items: center; */
+}
 
 .intro-text p {
   font-size: 1.4rem;
   color: var(--secondary);
   margin-bottom: 2rem;
+}
+.about-text p {
+  font-size: 1.2rem;
+  color: var(--secondary);
+  line-height: 2;
+  margin-top: 20px;
 }
 
 /* --- PROPERTIES SECTION --- */
@@ -1046,4 +1067,57 @@ h4 {
   border-radius: 60px;
   padding: 20px;
 
+}
+
+/* --- SCROLLER SECTION --- */
+.scroller-wrapper {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 2rem 0;
+}
+
+.scroller-track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+  padding: 1rem 0;
+}
+
+.scroller-track:hover {
+  animation-play-state: paused;
+}
+
+.skill-card {
+  background: #fff;
+  padding: 1.5rem 2.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  font-weight: 600;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.skill-icon {
+  font-size: 1.8rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
